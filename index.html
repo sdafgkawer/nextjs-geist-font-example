@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skool - Game Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <h1 class="logo">SKOOL</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#games" class="nav-link">Games</a>
+                <a href="#leaderboard" class="nav-link">Leaderboard</a>
+                <a href="#about" class="nav-link">About</a>
+                <button class="login-btn" onclick="openLoginModal()">Login</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">Welcome to Skool</h2>
+                <p class="hero-subtitle">Play, Learn, Compete - All in One Place</p>
+                <button class="cta-button" onclick="scrollToGames()">Start Playing</button>
+            </div>
+        </section>
+
+        <section id="games" class="games-section">
+            <h3 class="section-title">Featured Games</h3>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image game-1"></div>
+                    <h4 class="game-title">Math Challenge</h4>
+                    <p class="game-description">Test your math skills with fun puzzles</p>
+                    <button class="play-btn" onclick="playGame('math')">Play Now</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-image game-2"></div>
+                    <h4 class="game-title">Word Quest</h4>
+                    <p class="game-description">Expand your vocabulary through gameplay</p>
+                    <button class="play-btn" onclick="playGame('word')">Play Now</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-image game-3"></div>
+                    <h4 class="game-title">Memory Master</h4>
+                    <p class="game-description">Train your brain with memory games</p>
+                    <button class="play-btn" onclick="playGame('memory')">Play Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="leaderboard-section">
+            <h3 class="section-title">Top Players</h3>
+            <div class="leaderboard">
+                <div class="leaderboard-item">
+                    <span class="rank">1</span>
+                    <span class="player-name">Alex_99</span>
+                    <span class="score">2,450 pts</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">2</span>
+                    <span class="player-name">Sarah_Gamer</span>
+                    <span class="score">2,200 pts</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">3</span>
+                    <span class="player-name">Mike_Playz</span>
+                    <span class="score">1,875 pts</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h3 class="modal-title">Login to Skool</h3>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="emailLogin">Email</label>
+                    <input type="email" id="emailLogin" name="emailLogin" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <button type="button" class="submit-btn private-btn" onclick="handleAnonymousLogin()">Login Privately</button>
+            <p class="signup-link">Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h3 class="modal-title">Join Skool</h3>
+            <form class="signup-form" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="newUsername">Username</label>
+                    <input type="text" id="newUsername" name="newUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Password</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+            <p class="login-link">Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Skool. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
